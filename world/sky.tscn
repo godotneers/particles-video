@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://c2j36m8yplc10"]
+
+[ext_resource type="Texture2D" uid="uid://krxjfmfv7v5u" path="res://particles/white_star.svg" id="1_duft5"]
+
+[sub_resource type="Curve" id="Curve_fw0vr"]
+_data = [Vector2(0, 0.0291684), 0.0, 0.0, 0, 0, Vector2(0.0487805, 0.997311), 0.0, 0.0, 0, 0, Vector2(0.912195, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_qm5xb"]
+curve = SubResource("Curve_fw0vr")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jq86f"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1920, 1080, 1)
+angle_min = -211.0
+angle_max = 74.4
+direction = Vector3(0, 0, 0)
+gravity = Vector3(0, 0, 0)
+scale_min = 0.2
+scale_max = 0.8
+alpha_curve = SubResource("CurveTexture_qm5xb")
+hue_variation_max = 0.1
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -989.0
+offset_top = -655.0
+offset_right = 3348.0
+offset_bottom = 1758.0
+color = Color(0.0117647, 0.00392157, 0.0784314, 1)
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(960, 540)
+amount = 250
+process_material = SubResource("ParticleProcessMaterial_jq86f")
+texture = ExtResource("1_duft5")
+lifetime = 30.0
+preprocess = 30.0
+visibility_rect = Rect2(-960, -540, 1920, 1080)

@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://xlljivbnxi72"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_pswdg"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1panq"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_pswdg")
+
+[sub_resource type="QuadMesh" id="QuadMesh_7ydyo"]
+resource_local_to_scene = true
+material = SubResource("StandardMaterial3D_1panq")
+
+[node name="Node3D" type="Node3D"]
+
+[node name="Camera3D" type="Camera3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.56169)
+mesh = SubResource("QuadMesh_7ydyo")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(256, 64)
+
+[node name="Button" type="Button" parent="SubViewport"]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Hey I am a button!"

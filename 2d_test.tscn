@@ -1,0 +1,82 @@
+[gd_scene load_steps=8 format=3 uid="uid://bqhcgpt1uw3gn"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dd457"]
+particles_animation = true
+particles_anim_h_frames = 1
+particles_anim_v_frames = 1
+particles_anim_loop = false
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_tr482"]
+particle_flag_disable_z = true
+emission_shape = 6
+emission_ring_axis = Vector3(0, 0, 1)
+emission_ring_height = 1.0
+emission_ring_radius = 1.0
+emission_ring_inner_radius = 0.0
+spread = 180.0
+initial_velocity_min = 4.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+collision_mode = 2
+sub_emitter_mode = 3
+sub_emitter_amount_at_collision = 32
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_motd8"]
+polygon = PackedVector2Array(357, 240, 393, 362, 549, 390, 389, 426, 293, 392)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qtl5q"]
+radius = 37.054
+
+[sub_resource type="Gradient" id="Gradient_w0qle"]
+offsets = PackedFloat32Array(0, 0.247159, 1)
+colors = PackedColorArray(1, 1, 0.52549, 1, 1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_vbsk8"]
+gradient = SubResource("Gradient_w0qle")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_eet3o"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 100.0
+initial_velocity_max = 100.0
+gravity = Vector3(0, 0, 0)
+radial_accel_min = 11.0
+radial_accel_max = 47.19
+tangential_accel_max = 26.97
+attractor_interaction_enabled = false
+color_ramp = SubResource("GradientTexture1D_vbsk8")
+sub_emitter_mode = 2
+sub_emitter_amount_at_end = 12
+
+[node name="Node2D" type="Node2D"]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+material = SubResource("CanvasItemMaterial_dd457")
+position = Vector2(514, 306)
+amount = 1000
+sub_emitter = NodePath("../GPUParticles2D2")
+process_material = SubResource("ParticleProcessMaterial_tr482")
+lifetime = 61.61
+trail_lifetime = 0.91
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = SubResource("OccluderPolygon2D_motd8")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(583, 341)
+shape = SubResource("CircleShape2D_qtl5q")
+
+[node name="GPUParticles2D2" type="GPUParticles2D" parent="."]
+amount = 275
+sub_emitter = NodePath("../GPUParticles2D3")
+process_material = SubResource("ParticleProcessMaterial_eet3o")
+lifetime = 0.5
+explosiveness = 1.0
+
+[node name="GPUParticles2D3" type="GPUParticles2D" parent="."]
+amount = 275
+process_material = SubResource("ParticleProcessMaterial_eet3o")
+lifetime = 0.5
+explosiveness = 1.0
