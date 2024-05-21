@@ -1,0 +1,29 @@
+[gd_resource type="ParticleProcessMaterial" load_steps=5 format=3 uid="uid://s00vfpn8rgbm"]
+
+[sub_resource type="Curve" id="Curve_pj2gr"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.112195, 1), 0.0, 0.0, 0, 0, Vector2(0.858537, 0.868225), -0.811641, -0.811641, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_d0j85"]
+curve = SubResource("Curve_pj2gr")
+
+[sub_resource type="Curve" id="Curve_662mi"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.195122, 0.940836), 0.0, 0.0, 0, 0, Vector2(0.346341, 0.155565), 0.0, 0.0, 0, 0, Vector2(0.531707, 0.693422), 0.0, 0.0, 0, 0, Vector2(0.692683, 0.268515), 0.0, 0.0, 0, 0, Vector2(0.82439, 0.553579), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 7
+
+[sub_resource type="CurveTexture" id="CurveTexture_3de78"]
+curve = SubResource("Curve_662mi")
+
+[resource]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(20, 50, 1)
+emission_shape = 1
+emission_sphere_radius = 0.5
+orbit_velocity_min = 0.05
+orbit_velocity_max = 0.05
+radial_velocity_min = 25.0
+radial_velocity_max = 25.0
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_3de78")
+alpha_curve = SubResource("CurveTexture_d0j85")
