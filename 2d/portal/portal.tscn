@@ -19,7 +19,6 @@ position = Vector2(1, -132)
 shape = SubResource("CapsuleShape2D_5g03n")
 
 [node name="Portal" type="Sprite2D" parent="."]
-clip_children = 2
 position = Vector2(0, -121)
 texture = ExtResource("2_vk6h4")
 
