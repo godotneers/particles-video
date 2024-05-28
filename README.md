@@ -1,8 +1,7 @@
 ﻿# Particle Systems in Godot
 
 <p align="center">
-<!-- TODO: replace video link -->
-  <a href="https://www.youtube.com/watch?v=43BZsLZheA4"><img src="_assets/title_image_template.png" alt="Godot Particle Systems on YouTube Cover Image"></a> 
+  <a href="https://youtu.be/yKoGuBGZatY"><img src="http://i3.ytimg.com/vi/yKoGuBGZatY/hqdefault.jpg" alt="Godot Particle Systems on YouTube Cover Image"></a> 
 </p>
 
 Hello, Godotneers! Thank you very much for watching this video. This repository contains the example scene, that we used in the video. You can use it to follow along with the video or to experiment on your own.
