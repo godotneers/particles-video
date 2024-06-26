@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://duemno5uwb4t0"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ho2ge"]
+albedo_color = Color(0.235294, 0.211765, 0.145098, 1)
+
+[node name="Shack" type="Node3D"]
+
+[node name="Roof" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.99863, 0.052336, 0, -0.052336, 0.99863, 0, 3, 0)
+material_override = SubResource("StandardMaterial3D_ho2ge")
+size = Vector3(4, 0.2, 4)
+
+[node name="Pillar" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8, 1.5, 1.8)
+material_override = SubResource("StandardMaterial3D_ho2ge")
+size = Vector3(0.15, 3, 0.15)
+
+[node name="Pillar2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.8, 1.5, -1.8)
+material_override = SubResource("StandardMaterial3D_ho2ge")
+size = Vector3(0.15, 3, 0.15)
+
+[node name="Pillar3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8, 1.5, -1.8)
+material_override = SubResource("StandardMaterial3D_ho2ge")
+size = Vector3(0.15, 3, 0.15)
+
+[node name="Pillar4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8, 1.5, 1.8)
+material_override = SubResource("StandardMaterial3D_ho2ge")
+size = Vector3(0.15, 3, 0.15)

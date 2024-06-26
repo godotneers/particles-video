@@ -1,0 +1,89 @@
+[gd_scene load_steps=8 format=3 uid="uid://d2fuh26chvaup"]
+
+[ext_resource type="Material" uid="uid://ct5dkyvavb62p" path="res://elements/fountain/granite_,material.tres" id="1_vlji5"]
+[ext_resource type="CompressedTexture3D" uid="uid://db1lw5g417w4i" path="res://elements/fountain/GPUParticlesCollisionSDF3D_data.exr" id="2_tamiy"]
+
+[sub_resource type="Gradient" id="Gradient_03nsj"]
+offsets = PackedFloat32Array(0, 0.284653)
+colors = PackedColorArray(1, 1, 1, 1, 0.134773, 0.439462, 0.942968, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_d4p5m"]
+gradient = SubResource("Gradient_03nsj")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_n7rk5"]
+direction = Vector3(0, 1, 0)
+initial_velocity_min = 2.0
+initial_velocity_max = 3.0
+scale_min = 0.7
+color_ramp = SubResource("GradientTexture1D_d4p5m")
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.39
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m5f8a"]
+vertex_color_use_as_albedo = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_ylxa5"]
+material = SubResource("StandardMaterial3D_m5f8a")
+size = Vector3(0.1, 0.1, 0.1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.93081, 0)
+material_override = ExtResource("1_vlji5")
+use_collision = true
+radius = 0.3
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="."]
+material_override = ExtResource("1_vlji5")
+use_collision = true
+radius = 2.0
+height = 0.15
+
+[node name="Combiner" type="CSGCombiner3D" parent="."]
+material_override = ExtResource("1_vlji5")
+use_collision = true
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="Combiner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+radius = 2.0
+height = 1.0
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="Combiner"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+operation = 2
+radius = 1.9
+height = 1.1
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.27238, 1.42069, 0.375088)
+amount = 3000
+lifetime = 2.0
+visibility_aabb = AABB(-4.45068, -4, -4, 8, 8, 8)
+process_material = SubResource("ParticleProcessMaterial_n7rk5")
+draw_pass_1 = SubResource("BoxMesh_ylxa5")
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.34989, 0.0214972, -7.32552)
+size = Vector3(4, 0.2, 4)
+
+[node name="GPUParticlesCollisionHeightField3D" type="GPUParticlesCollisionHeightField3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.54724, 0.127383, 0.0367799)
+size = Vector3(4.88861, 3.14014, 4.59106)
+
+[node name="GPUParticlesCollisionSDF3D" type="GPUParticlesCollisionSDF3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.62888, -0.371861, 0.113127)
+size = Vector3(5, 3, 5)
+resolution = 5
+thickness = 0.5
+texture = ExtResource("2_tamiy")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.877114, 0, 0)
+size = Vector3(4, 1, 4)
+
+[node name="GPUParticlesAttractorSphere3D" type="GPUParticlesAttractorSphere3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.42521, 2.20604, 4.57071)
+strength = 31.99
+radius = 3.0

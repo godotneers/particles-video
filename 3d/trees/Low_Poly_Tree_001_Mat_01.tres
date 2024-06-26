@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" load_steps=2 format=3 uid="uid://c0yeoechynlq8"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_jsm15"]
+
+[resource]
+resource_name = "Low_Poly_Tree_001_Mat_01"
+cull_mode = 2
+albedo_color = Color(0.227765, 0.139324, 0.00986009, 1)
+roughness_texture = SubResource("NoiseTexture2D_jsm15")

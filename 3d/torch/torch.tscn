@@ -1,0 +1,72 @@
+[gd_scene load_steps=13 format=3 uid="uid://dd2svidmn78r1"]
+
+[ext_resource type="PackedScene" uid="uid://b6dfjquehfnsk" path="res://3d/torch/torch.glb" id="1_7dua1"]
+[ext_resource type="Script" path="res://3d/torch/flicker.gd" id="1_c4ma4"]
+[ext_resource type="Texture2D" uid="uid://c78jcjh8fjndd" path="res://3d/particles/flamelet_smooth.png" id="3_6d48f"]
+
+[sub_resource type="Curve" id="Curve_3nusb"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.116883, 1), 0.0, 0.0, 0, 0, Vector2(0.666667, 0.599854), 0.0, 0.0, 0, 0, Vector2(1, 0.0425065), 0.0, 0.0, 0, 0]
+point_count = 4
+
+[sub_resource type="CurveTexture" id="CurveTexture_o0yj7"]
+curve = SubResource("Curve_3nusb")
+
+[sub_resource type="Gradient" id="Gradient_mxiw4"]
+offsets = PackedFloat32Array(0, 0.121287, 0.487624, 0.65099, 0.834158)
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 0, 1, 0.788582, 0.0775908, 0.0731329, 1, 0, 0, 0, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mt513"]
+gradient = SubResource("Gradient_mxiw4")
+
+[sub_resource type="Curve" id="Curve_si670"]
+_data = [Vector2(0, 0.826127), 0.0, 0.0, 0, 0, Vector2(0.450216, 0.0163064), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ndp6u"]
+curve = SubResource("Curve_si670")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_jcdoy"]
+emission_shape = 1
+emission_sphere_radius = 0.13
+inherit_velocity_ratio = -0.15
+direction = Vector3(0, -1, 0)
+spread = 0.0
+gravity = Vector3(0, 18, 0)
+scale_min = 0.1
+scale_max = 0.75
+scale_curve = SubResource("CurveTexture_ndp6u")
+color_ramp = SubResource("GradientTexture1D_mt513")
+alpha_curve = SubResource("CurveTexture_o0yj7")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_wnaek"]
+transparency = 1
+shading_mode = 0
+vertex_color_use_as_albedo = true
+albedo_texture = ExtResource("3_6d48f")
+billboard_mode = 2
+
+[sub_resource type="QuadMesh" id="QuadMesh_hgny2"]
+material = SubResource("StandardMaterial3D_wnaek")
+size = Vector2(0.25, 0.25)
+
+[node name="Torch" type="Node3D"]
+script = ExtResource("1_c4ma4")
+
+[node name="torch" parent="." instance=ExtResource("1_7dua1")]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14823, 0)
+light_color = Color(0.972549, 1, 0, 1)
+light_energy = 0.691447
+omni_range = 77.238
+
+[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.0541, 0)
+cast_shadow = 0
+amount = 100
+lifetime = 0.4
+preprocess = 10.0
+local_coords = true
+process_material = SubResource("ParticleProcessMaterial_jcdoy")
+draw_pass_1 = SubResource("QuadMesh_hgny2")
