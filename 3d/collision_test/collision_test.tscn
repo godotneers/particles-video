@@ -1,0 +1,191 @@
+[gd_scene load_steps=17 format=3 uid="uid://uq3na8rghhbn"]
+
+[ext_resource type="PackedScene" uid="uid://4kb86lxbov4v" path="res://3d/player/mr.g.glb" id="1_t3ghg"]
+[ext_resource type="PackedScene" uid="uid://duemno5uwb4t0" path="res://3d/shack/shack.tscn" id="2_vipjm"]
+[ext_resource type="Shader" path="res://3d/collision_test/displacement.gdshader" id="3_ejsj4"]
+[ext_resource type="CompressedTexture3D" uid="uid://bjo7r2tkwc3ao" path="res://3d/collision_test/collision_test.GPUParticlesCollisionSDF3D_data.exr" id="4_uwxbd"]
+[ext_resource type="PackedScene" uid="uid://cpgxmfjqqe4br" path="res://3d/trees/Low_Poly_Tree_003.blend" id="5_qsvs5"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nr1yp"]
+emission_shape = 6
+emission_ring_axis = Vector3(0, 1, 0)
+emission_ring_height = 1.0
+emission_ring_radius = 5.0
+emission_ring_inner_radius = 0.0
+direction = Vector3(0, -1, 0)
+spread = 0.0
+collision_mode = 2
+
+[sub_resource type="SphereMesh" id="SphereMesh_yvhpy"]
+
+[sub_resource type="SystemFont" id="SystemFont_e4e0m"]
+font_names = PackedStringArray("Lato")
+font_italic = true
+
+[sub_resource type="Gradient" id="Gradient_1xdld"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_5pms4"]
+seed = 100
+frequency = 0.002
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vi2qd"]
+color_ramp = SubResource("Gradient_1xdld")
+noise = SubResource("FastNoiseLite_5pms4")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t5q5t"]
+render_priority = 0
+shader = ExtResource("3_ejsj4")
+shader_parameter/multiplier = 2.0
+shader_parameter/displacement_map = SubResource("NoiseTexture2D_vi2qd")
+
+[sub_resource type="QuadMesh" id="QuadMesh_26s8k"]
+material = SubResource("ShaderMaterial_t5q5t")
+size = Vector2(16, 16)
+subdivide_width = 256
+subdivide_depth = 256
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_dvnm8"]
+emission_shape = 6
+emission_ring_axis = Vector3(1, 0, 0)
+emission_ring_height = 1.0
+emission_ring_radius = 2.5
+emission_ring_inner_radius = 0.0
+direction = Vector3(0, -1, 0)
+spread = 0.0
+gravity = Vector3(-3, 0, 0)
+collision_mode = 2
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_017fv"]
+albedo_color = Color(5.48691e-06, 0.557107, 0.752615, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_xi30s"]
+material = SubResource("StandardMaterial3D_017fv")
+radius = 0.3
+height = 0.6
+
+[node name="CollisionTest" type="Node3D"]
+
+[node name="Particles Down" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0911274, 11.3544, -79.7865)
+amount = 20
+lifetime = 5.0
+fixed_fps = 60
+collision_base_size = 0.3
+visibility_aabb = AABB(-6, -24, -6, 12, 24, 12)
+process_material = SubResource("ParticleProcessMaterial_nr1yp")
+draw_pass_1 = SubResource("SphereMesh_yvhpy")
+
+[node name="Collision Box" type="Node3D" parent="."]
+
+[node name="Collision" type="Node3D" parent="Collision Box"]
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="Collision Box/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.83233, 0)
+size = Vector3(16, 0.5, 16)
+
+[node name="Meshes" type="CSGBox3D" parent="Collision Box"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.83233, 0.00105095)
+size = Vector3(16, 0.5, 16)
+
+[node name="Node3D" type="Node3D" parent="Collision Box/Meshes"]
+
+[node name="mr_g" parent="Collision Box/Meshes/Node3D" instance=ExtResource("1_t3ghg")]
+transform = Transform3D(0.02178, 0, 0.999763, 0, 1, 0, -0.999763, 0, 0.02178, 0, 1.27828, -6.25074)
+
+[node name="Shack" parent="Collision Box/Meshes" instance=ExtResource("2_vipjm")]
+
+[node name="Label3D2" type="Label3D" parent="Collision Box"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11.341, 0.00105095)
+billboard = 1
+no_depth_test = true
+text = "GPUParticlesCollisionBox3D"
+font = SubResource("SystemFont_e4e0m")
+font_size = 400
+outline_size = 80
+
+[node name="Height Field" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -35.4041)
+
+[node name="Collision" type="Node3D" parent="Height Field"]
+
+[node name="GPUParticlesCollisionHeightField3D" type="GPUParticlesCollisionHeightField3D" parent="Height Field/Collision"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.835205, -0.0262756, 0.709412)
+size = Vector3(14.4097, 10.7481, 13.3466)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Height Field"]
+transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -4.40113, 0)
+mesh = SubResource("QuadMesh_26s8k")
+
+[node name="Label3D2" type="Label3D" parent="Height Field"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11.341, 0)
+billboard = 1
+no_depth_test = true
+text = "GPUParticlesCollisionHeightField3D
+"
+font = SubResource("SystemFont_e4e0m")
+font_size = 400
+outline_size = 80
+
+[node name="Node3D" type="Node3D" parent="Height Field"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.83233, 0)
+
+[node name="mr_g" parent="Height Field/Node3D" instance=ExtResource("1_t3ghg")]
+transform = Transform3D(0.02178, 0, 0.999763, 0, 1, 0, -0.999763, 0, 0.02178, 0, 1.27828, -6.25074)
+
+[node name="Shack" parent="Height Field" instance=ExtResource("2_vipjm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.83233, 0)
+
+[node name="SDF" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -78.5248)
+
+[node name="GPUParticlesCollisionSDF3D" type="GPUParticlesCollisionSDF3D" parent="SDF"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.48958, -0.746405, -0.978371)
+size = Vector3(11.7281, 6.67627, 7.79422)
+texture = ExtResource("4_uwxbd")
+
+[node name="Collision" type="Node3D" parent="SDF"]
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="SDF"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.83233, 0)
+size = Vector3(16, 0.5, 16)
+
+[node name="Label3D2" type="Label3D" parent="SDF"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -11.341, 0)
+billboard = 1
+no_depth_test = true
+text = "GPUParticlesCollisionSDF3D"
+font = SubResource("SystemFont_e4e0m")
+font_size = 400
+outline_size = 80
+
+[node name="Node3D" type="Node3D" parent="SDF"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.83233, 0)
+
+[node name="mr_g" parent="SDF/Node3D" instance=ExtResource("1_t3ghg")]
+transform = Transform3D(0.02178, 0, 0.999763, 0, 1, 0, -0.999763, 0, 0.02178, 0, 1.27828, -5.88152)
+
+[node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="SDF"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.83233, 0)
+size = Vector3(16, 0.5, 16)
+
+[node name="Low_Poly_Tree_0032" parent="SDF" instance=ExtResource("5_qsvs5")]
+transform = Transform3D(0.0111992, 0, 0.474868, 0.0879146, 0.466789, -0.00207336, -0.466659, 0.0879391, 0.0110056, -4.86043, -3.5375, 0.170258)
+
+[node name="Low_Poly_Tree_0033" parent="SDF" instance=ExtResource("5_qsvs5")]
+transform = Transform3D(0.0142642, 4.22588e-10, 0.604832, -0.0563522, 0.602368, 0.001329, -0.602201, -0.0563678, 0.0142022, -4.95189, -3.48398, -0.583443)
+
+[node name="Low_Poly_Tree_0034" parent="SDF" instance=ExtResource("5_qsvs5")]
+transform = Transform3D(0.0109634, 0, 0.464871, 0, 0.465, 0, -0.464871, 0, 0.0109634, -6.03885, -3.48398, 0.105019)
+
+[node name="Shack" parent="SDF" instance=ExtResource("2_vipjm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.40342, -3.65838, -0.5205)
+
+[node name="Particles Back" type="GPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.80685, -2.13028, -79.0752)
+amount = 50
+lifetime = 5.0
+fixed_fps = 60
+collision_base_size = 0.6
+visibility_aabb = AABB(-24, -6, -6, 24, 12, 12)
+process_material = SubResource("ParticleProcessMaterial_dvnm8")
+draw_pass_1 = SubResource("SphereMesh_xi30s")
