@@ -66,7 +66,7 @@ height = 0.6
 [node name="CollisionTest" type="Node3D"]
 
 [node name="Particles Down" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0911274, 11.3544, -79.7865)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0911274, 11.3544, -77.708)
 amount = 20
 lifetime = 5.0
 fixed_fps = 60
@@ -181,7 +181,7 @@ transform = Transform3D(0.0109634, 0, 0.464871, 0, 0.465, 0, -0.464871, 0, 0.010
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.40342, -3.65838, -0.5205)
 
 [node name="Particles Back" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.80685, -2.13028, -79.0752)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.80685, -2.13028, -79.044)
 amount = 50
 lifetime = 5.0
 fixed_fps = 60
