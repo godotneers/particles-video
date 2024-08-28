@@ -1,51 +1,7 @@
-[gd_scene load_steps=14 format=3 uid="uid://dd2svidmn78r1"]
+[gd_scene load_steps=3 format=3 uid="uid://dd2svidmn78r1"]
 
 [ext_resource type="PackedScene" uid="uid://b6dfjquehfnsk" path="res://3d/torch/torch.glb" id="1_7dua1"]
 [ext_resource type="Script" path="res://3d/torch/flickering_light.gd" id="3_00myx"]
-[ext_resource type="Texture2D" uid="uid://c78jcjh8fjndd" path="res://3d/particles/flamelet_smooth.png" id="3_6d48f"]
-[ext_resource type="Script" path="res://3d/torch/movement_reaction.gd" id="5_bl4k6"]
-
-[sub_resource type="Curve" id="Curve_7ikf0"]
-_data = [Vector2(0, 0), 0.0, 14.6762, 0, 0, Vector2(0.225641, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -3.68952, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="CurveTexture" id="CurveTexture_tv4yw"]
-curve = SubResource("Curve_7ikf0")
-
-[sub_resource type="Gradient" id="Gradient_o32l1"]
-offsets = PackedFloat32Array(0, 0.0593923, 0.203039, 0.53453, 0.631818, 0.786364)
-colors = PackedColorArray(0, 0, 0, 1, 1, 0, 0, 1, 1, 1, 0, 1, 1, 1, 0.264144, 1, 1, 1, 1, 1, 0.13, 0.13, 0.13, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_c47ko"]
-gradient = SubResource("Gradient_o32l1")
-
-[sub_resource type="Curve" id="Curve_kiwmp"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.612713), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_r5sy5"]
-curve = SubResource("Curve_kiwmp")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sdbes"]
-emission_shape = 1
-emission_sphere_radius = 0.13
-gravity = Vector3(0, 9.8, 0)
-scale_min = 0.8
-scale_curve = SubResource("CurveTexture_r5sy5")
-color_ramp = SubResource("GradientTexture1D_c47ko")
-alpha_curve = SubResource("CurveTexture_tv4yw")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t8p08"]
-transparency = 1
-shading_mode = 0
-vertex_color_use_as_albedo = true
-albedo_texture = ExtResource("3_6d48f")
-billboard_mode = 1
-billboard_keep_scale = true
-
-[sub_resource type="QuadMesh" id="QuadMesh_yp16x"]
-material = SubResource("StandardMaterial3D_t8p08")
-size = Vector2(0.25, 0.25)
 
 [node name="Torch" type="Node3D"]
 
@@ -55,31 +11,6 @@ size = Vector2(0.25, 0.25)
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14823, 0)
 light_color = Color(0.972549, 1, 0, 1)
-light_energy = 0.717902
+light_energy = 1.28075
 omni_range = 77.238
 script = ExtResource("3_00myx")
-
-[node name="GPUParticles3D" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.07583, 0)
-amount = 100
-lifetime = 0.45
-local_coords = true
-process_material = SubResource("ParticleProcessMaterial_sdbes")
-draw_pass_1 = SubResource("QuadMesh_yp16x")
-
-[node name="Marker3D" type="Marker3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.012473, 1.03037, 0)
-script = ExtResource("5_bl4k6")
-speed = 6.0
-max_strength = 5.0
-
-[node name="Attractor" type="GPUParticlesAttractorSphere3D" parent="Marker3D"]
-unique_name_in_owner = true
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.497064, 1.00421, 0)
-top_level = true
-strength = 8.0
-attenuation = 1e-05
-
-[node name="CSGSphere3D" type="CSGSphere3D" parent="Marker3D/Attractor"]
-visible = false
-radius = 0.1

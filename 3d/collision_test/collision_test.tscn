@@ -1,9 +1,8 @@
-[gd_scene load_steps=17 format=3 uid="uid://uq3na8rghhbn"]
+[gd_scene load_steps=16 format=3 uid="uid://uq3na8rghhbn"]
 
 [ext_resource type="PackedScene" uid="uid://4kb86lxbov4v" path="res://3d/player/mr.g.glb" id="1_t3ghg"]
 [ext_resource type="PackedScene" uid="uid://duemno5uwb4t0" path="res://3d/shack/shack.tscn" id="2_vipjm"]
 [ext_resource type="Shader" path="res://3d/collision_test/displacement.gdshader" id="3_ejsj4"]
-[ext_resource type="CompressedTexture3D" uid="uid://bjo7r2tkwc3ao" path="res://3d/collision_test/collision_test.GPUParticlesCollisionSDF3D_data.exr" id="4_uwxbd"]
 [ext_resource type="PackedScene" uid="uid://cpgxmfjqqe4br" path="res://3d/trees/Low_Poly_Tree_003.blend" id="5_qsvs5"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nr1yp"]
@@ -66,12 +65,11 @@ height = 0.6
 [node name="CollisionTest" type="Node3D"]
 
 [node name="Particles Down" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0911274, 11.3544, -77.708)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0911274, 11.3544, -0.450523)
 amount = 20
 lifetime = 5.0
-fixed_fps = 60
 collision_base_size = 0.3
-visibility_aabb = AABB(-6, -24, -6, 12, 24, 12)
+visibility_aabb = AABB(-6, -4, -6, 12, 8, 12)
 process_material = SubResource("ParticleProcessMaterial_nr1yp")
 draw_pass_1 = SubResource("SphereMesh_yvhpy")
 
@@ -81,6 +79,7 @@ draw_pass_1 = SubResource("SphereMesh_yvhpy")
 
 [node name="GPUParticlesCollisionBox3D" type="GPUParticlesCollisionBox3D" parent="Collision Box/Collision"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.83233, 0)
+visible = false
 size = Vector3(16, 0.5, 16)
 
 [node name="Meshes" type="CSGBox3D" parent="Collision Box"]
@@ -105,12 +104,9 @@ outline_size = 80
 
 [node name="Height Field" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -35.4041)
+visible = false
 
 [node name="Collision" type="Node3D" parent="Height Field"]
-
-[node name="GPUParticlesCollisionHeightField3D" type="GPUParticlesCollisionHeightField3D" parent="Height Field/Collision"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.835205, -0.0262756, 0.709412)
-size = Vector3(14.4097, 10.7481, 13.3466)
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="Height Field"]
 transform = Transform3D(1, 0, 0, 0, -4.37114e-08, 1, 0, -1, -4.37114e-08, 0, -4.40113, 0)
@@ -137,11 +133,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -3.83233, 0)
 
 [node name="SDF" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -78.5248)
-
-[node name="GPUParticlesCollisionSDF3D" type="GPUParticlesCollisionSDF3D" parent="SDF"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.48958, -0.746405, -0.978371)
-size = Vector3(11.7281, 6.67627, 7.79422)
-texture = ExtResource("4_uwxbd")
+visible = false
 
 [node name="Collision" type="Node3D" parent="SDF"]
 
@@ -181,7 +173,8 @@ transform = Transform3D(0.0109634, 0, 0.464871, 0, 0.465, 0, -0.464871, 0, 0.010
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.40342, -3.65838, -0.5205)
 
 [node name="Particles Back" type="GPUParticles3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.80685, -2.13028, -79.044)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.80685, -2.13028, -35.655)
+visible = false
 amount = 50
 lifetime = 5.0
 fixed_fps = 60

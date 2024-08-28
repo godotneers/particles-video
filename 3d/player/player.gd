@@ -34,8 +34,8 @@ func _physics_process(delta) -> void:
 	velocity.z = horizontal_velocity.y
 	velocity.y -= 40 * delta
 		
-	if Input.is_action_just_pressed("attack"):
-		_animation_player.play("player_animations/Swing")
+#	if Input.is_action_just_pressed("attack"):
+#		_animation_player.play("player_animations/Swing")
 	
 	move_and_slide()
 
