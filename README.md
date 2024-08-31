@@ -11,9 +11,9 @@
 Hello, Godotneers! Thank you very much for watching this video. This repository contains the example scene, that we used in the video. You can use it to follow along with the video or to experiment on your own.
 
 ## Using this repository
-There is a `start` branch that contains the code as it was at the beginning of the video. You can use this branch to follow along with the video if you'd like.
+There is a `3d_start` branch that contains the code as it was at the beginning of the video. You can use this branch to follow along with the video if you'd like.
 
-The `main` branch contains the code as it was at the end of the video. If you don't know how to use git, you can also download the code as a zip file using these links:
+The `3d` branch contains the code as it was at the end of the video. If you don't know how to use git, you can also download the code as a zip file using these links:
 
 - [Download the code as a zip file (main branch, at the end of the video)](https://github.com/godotneers/particles-video/archive/refs/heads/3d.zip)
 - [Download the code as a zip file (start branch, at the beginning of the video)](https://github.com/godotneers/particles-video/archive/refs/heads/3d_start.zip)
