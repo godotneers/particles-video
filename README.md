@@ -1,7 +1,11 @@
-﻿# Particle Systems in Godot
+﻿# Particle Systems in Godot Part 2: 3D Particles
 
 <p align="center">
-  <a href="https://youtu.be/yKoGuBGZatY"><img src="http://i3.ytimg.com/vi/yKoGuBGZatY/hqdefault.jpg" alt="Godot Particle Systems on YouTube Cover Image"></a> 
+  <a href="https://youtu.be/yKoGuBGZatY">
+<!--
+<img src="http://i3.ytimg.com/vi/yKoGuBGZatY/hqdefault.jpg" alt="Godot Particle Systems on YouTube Cover Image"> -->
+<img src="_assets/title_card_pt2.jpg" width="1280" alt="Godot Particle Systems on YouTube Cover Image">
+</a> 
 </p>
 
 Hello, Godotneers! Thank you very much for watching this video. This repository contains the example scene, that we used in the video. You can use it to follow along with the video or to experiment on your own.
@@ -11,8 +15,8 @@ There is a `start` branch that contains the code as it was at the beginning of t
 
 The `main` branch contains the code as it was at the end of the video. If you don't know how to use git, you can also download the code as a zip file using these links:
 
-- [Download the code as a zip file (main branch, at the end of the video)](https://github.com/godotneers/particles-video/archive/refs/heads/main.zip)
-- [Download the code as a zip file (start branch, at the beginning of the video)](https://github.com/godotneers/particles-video/archive/refs/heads/start.zip)
+- [Download the code as a zip file (main branch, at the end of the video)](https://github.com/godotneers/particles-video/archive/refs/heads/3d.zip)
+- [Download the code as a zip file (start branch, at the beginning of the video)](https://github.com/godotneers/particles-video/archive/refs/heads/3d_start.zip)
 
 ## Support me
 
