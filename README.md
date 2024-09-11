@@ -1,7 +1,7 @@
 ﻿# Particle Systems in Godot Part 2: 3D Particles
 
 <p align="center">
-  <a href="https://youtu.be/yKoGuBGZatY">
+  <a href="https://youtu.be/cZ5Ang_Ji8E">
 <!--
 <img src="http://i3.ytimg.com/vi/yKoGuBGZatY/hqdefault.jpg" alt="Godot Particle Systems on YouTube Cover Image"> -->
 <img src="_assets/title_card_pt2.jpg" width="1280" alt="Godot Particle Systems on YouTube Cover Image">
